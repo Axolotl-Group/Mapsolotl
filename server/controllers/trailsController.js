@@ -5,8 +5,8 @@ const trailsController = {};
 trailsController.getTrails = async (req, res, next) => {
   const { lat, lon } = req.body;
   console.log('req.body is: ', req.body);
-  //   const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}lon=${lon};
-  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=%3C${lat}%3E&lon=%3C${lon}%3E`;
+  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}&lon=${lon}`;
+  //const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=%3C${lat}%3E&lon=%3C${lon}%3E`;
   const options = {
     method: 'GET',
     headers: {
