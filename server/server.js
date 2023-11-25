@@ -21,8 +21,16 @@ const userController = require('./controllers/userController');
   });
   
   app.post('/signup', userController.createUser, (req, res) => {
+    res.sendStatus(201);
+  });
+
+  app.post('/login', userController.verifyUser, (req, res) => {
     res.sendStatus(200);
   });
+
+  app.patch('/updatepw/:name',userController.updateUser,(req,res) => {
+    res.sendStatus(201);
+  })
   
 //express middleware error handler
 

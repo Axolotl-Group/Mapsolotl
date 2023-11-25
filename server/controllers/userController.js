@@ -2,43 +2,93 @@ const User = require("../userModel");
 
 const userController = {};
 
-/**
- * getAllUsers - retrieve all users from the database and stores it into res.locals
- * before moving on to next middleware.
- */
-userController.getAllUsers = (req, res, next) => {
-  // User.collection.deleteMany({})
-  User.find({}, (err, users) => {
-    // if a database error occurs, call next with the error message passed in
-    // for the express global error handler to catch
-    if (err)
-      return next(
-        "Error in userController.getAllUsers: " + JSON.stringify(err)
-      );
-    // store retrieved users into res.locals and move on to next middleware
-    res.locals.users = users;
-    return next();
-  });
-};
-/**
- * createUser - create and save a new User into the database.
- */
-userController.createUser = (req, res, next) => {
-  // write code here
-  // console.log("req.body: ", req.body)
-  const { userName, password } = req.body;
-  User.create({
-    userName,
-    password,
-  })
-    .then((userDoc) => {
-      res.locals.userId = userDoc;
-      userDoc.save();
-      return next();
+
+//createUser - create and save a new User into the database.
+userController.createUser = async(req, res, next) => {
+  try {
+      const { userName, password } = req.body;
+      const response = await User.create({userName,password})
+      const saveUser = await response.save()
+      res.locals.userId = saveUser
+      // console.log("newuser: ",saveUser)
+      return next()
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in userController.createUser: ${err} `,
+      status: 400,
+      message: { err: 'error occured while creating student' },
     })
-    .catch((err) => {
-      console.log(err);
-      return next(err);
-    });
+  }
 };
+
+
+userController.updateUser = async(req,res,next) => {
+  try {
+  const { userName,password } = req.body;
+  const updatePW = await User.findOneAndUpdate(
+    {userName: req.params.name},
+    {password: password},
+    {new:true}
+    );
+  console.log("updatePW", updatePW)
+  return next();
+  
+  } catch (err) {
+    return next({
+      log:`Express error handler caught in userController.updateUser: ${err}`,
+        status: 400,
+        message:{err: 'error occured while updating password'},
+    })
+  }
+}
+
+/**
+ * verifyUser - Obtain username and password from the request body, locate
+ * the appropriate user in the database, and then authenticate the submitted password
+ * against the password stored in the database.
+ */
+userController.verifyUser = async(req,res,next) => {
+  try {
+  const { userName,password } = req.body;
+  const user = await User.findOne({userName,password});
+  // console.log("user: ", user)
+  if (!user) {
+    //redirect to signup if userName doesn't exist
+    return next({
+      log:`Express error handler caught in userController.verifyUser: username or password error`,
+      status: 400,
+      message:{err: 'user not exist'},
+    })
+    // res.redirect("/signup");
+  } else if (user[userName] === req.body[password]) {
+    console.log("we found user: ", user);
+    console.log("username and password match!");
+    // res.redirect("/secret");  
+    return next();
+  }
+  } catch (err) {
+    return next({
+        log:`Express error handler caught in userController.verifyUser: ${err}`,
+        status: 400,
+        message:{err: 'error occured while verifying user'},
+    })
+  }
+}
+// deleteUser  - Delete a user from the database
+
+// getAllUsers - retrieve all users from the database
+// userController.getUser = async (req, res, next) => {
+//   try {
+//     const users = await User.find({});
+//     res.locals.users = users;
+//     return next();
+//   }catch (err) {
+//     return next({
+//       log: `Express error handler caught in userController.getAllUser: ${err} `,
+//       status: 400,
+//       message: { err: 'error occured while getting all user' },
+//     })
+//   }
+  
+// };
 module.exports = userController;
