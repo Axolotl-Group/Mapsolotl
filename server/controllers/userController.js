@@ -1,5 +1,5 @@
 const User = require("../userModel");
-
+const bcrypt = require('bcrypt');
 const userController = {};
 
 
@@ -50,21 +50,18 @@ userController.updateUser = async(req,res,next) => {
 userController.verifyUser = async(req,res,next) => {
   try {
   const { userName,password } = req.body;
-  const user = await User.findOne({userName,password});
+  const user = await User.findOne({ userName });
+  const passwordMatch = await bcrypt.compare(password,user.password)
+
   // console.log("user: ", user)
   if (!user) {
-    //redirect to signup if userName doesn't exist
-    return next({
-      log:`Express error handler caught in userController.verifyUser: username or password error`,
-      status: 400,
-      message:{err: 'user not exist'},
-    })
-    // res.redirect("/signup");
-  } else if (user[userName] === req.body[password]) {
-    console.log("we found user: ", user);
-    console.log("username and password match!");
-    // res.redirect("/secret");  
-    return next();
+    //redirect to signup if user doesn't exist
+    res.redirect("/signup");
+  } else if (!passwordMatch) {
+    console.log("password incorrect")
+    res.redirect("/login");
+  }else{
+    return next()
   }
   } catch (err) {
     return next({
@@ -77,18 +74,17 @@ userController.verifyUser = async(req,res,next) => {
 // deleteUser  - Delete a user from the database
 
 // getAllUsers - retrieve all users from the database
-// userController.getUser = async (req, res, next) => {
-//   try {
-//     const users = await User.find({});
-//     res.locals.users = users;
-//     return next();
-//   }catch (err) {
-//     return next({
-//       log: `Express error handler caught in userController.getAllUser: ${err} `,
-//       status: 400,
-//       message: { err: 'error occured while getting all user' },
-//     })
-//   }
-  
-// };
+userController.getAllUser = async (req, res, next) => {
+  try {
+    const users = await User.find({});
+    res.locals.users = users;
+    return next();
+  }catch (err) {
+    return next({
+      log: `Express error handler caught in userController.getAllUser: ${err} `,
+      status: 400,
+      message: { err: 'error occured while getting all user' },
+    })
+  }
+};
 module.exports = userController;

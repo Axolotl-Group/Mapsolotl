@@ -19,13 +19,15 @@ const userController = require('./controllers/userController');
   app.get("/", (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, "../index.html"));
   });
-  
+  app.get("/secret",userController.getAllUser, (req, res) => {
+    return res.status(200).send(res.locals.users);
+  });
   app.post('/signup', userController.createUser, (req, res) => {
     res.sendStatus(201);
   });
 
   app.post('/login', userController.verifyUser, (req, res) => {
-    res.sendStatus(200);
+    res.status(200).send("Login successfully");
   });
 
   app.patch('/updatepw/:name',userController.updateUser,(req,res) => {
