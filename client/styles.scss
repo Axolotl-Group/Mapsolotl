@@ -1,3 +1,51 @@
 body {
-  background-color: aqua;
+  background-image: url("https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57");
+  background-position: cover;
+}
+
+.header {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  height: 150px;
+  // margin: 10px;
+  color: white;
+  background-color: rgba(173, 160, 160, 0.7);
+}
+
+.sub-header {
+  width: 80%;
+  height: 100%;
+  display: table;
+  vertical-align: middle;
+}
+
+.logo h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 32px;
+  color: blueviolet;
+  font-weight: 800;
+}
+
+.logo h1 span {
+  color: pink;
+  font-weight: 200;
+}
+
+.navbar {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.App {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.App h1 {
+  color: rgb(145, 76, 76);
 }
