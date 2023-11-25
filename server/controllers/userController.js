@@ -6,31 +6,35 @@ const userController = {};
 //createUser - create and save a new User into the database.
 userController.createUser = async(req, res, next) => {
   try {
-      const { userName, password } = req.body;
-      const response = await User.create({userName,password})
-      const saveUser = await response.save()
+    const { userName, password } = req.body;
+    const salt = await bcrypt.genSalt();
+    const hashedPW = await bcrypt.hash(password, salt);
+    const response = await User.create({userName,password: hashedPW})
+    const saveUser = await response.save()
       res.locals.userId = saveUser
-      // console.log("newuser: ",saveUser)
+      console.log("newuser: ",saveUser)
       return next()
   } catch (err) {
     return next({
       log: `Express error handler caught in userController.createUser: ${err} `,
       status: 400,
-      message: { err: 'error occured while creating student' },
+      message: { err: 'error occured while creating user' },
     })
   }
 };
 
-
+//update user's password
 userController.updateUser = async(req,res,next) => {
   try {
   const { userName,password } = req.body;
-  const updatePW = await User.findOneAndUpdate(
+  const salt = await bcrypt.genSalt();
+  const hashedPW = await bcrypt.hash(password, salt);
+  const response = await User.findOneAndUpdate(
     {userName: req.params.name},
-    {password: password},
+    {password: hashedPW},
     {new:true}
     );
-  console.log("updatePW", updatePW)
+  console.log("response for update user password", response)
   return next();
   
   } catch (err) {
@@ -61,6 +65,7 @@ userController.verifyUser = async(req,res,next) => {
     console.log("password incorrect")
     res.redirect("/login");
   }else{
+    console.log("Login successfully")
     return next()
   }
   } catch (err) {

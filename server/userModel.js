@@ -28,12 +28,12 @@ const userSchema = new Schema({
   
 });
 
-userSchema.pre('save', function(){
-    if (!this.isModified('password')) return;
-    const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
-    const hashedPassword = bcrypt.hashSync(this.password, salt)
-    this.password = hashedPassword;
-  })
+// userSchema.pre('save', function(){
+//     if (!this.isModified('password')) return;
+//     const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
+//     const hashedPassword = bcrypt.hashSync(this.password, salt)
+//     this.password = hashedPassword;
+//   })
 // creats a model for the 'user' collection that will be part of the export
 const User = mongoose.model("user", userSchema);
 
