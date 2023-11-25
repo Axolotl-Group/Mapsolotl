@@ -1,6 +1,6 @@
-const User = require("../userModel");
-const bcrypt = require('bcrypt');
-const userController = {};
+// const User = require("../userModel");
+// const bcrypt = require('bcrypt');
+// const userController = {};
 
 
 //createUser - create and save a new User into the database.
@@ -46,16 +46,16 @@ userController.updateUser = async(req,res,next) => {
   }
 }
 
-/**
- * verifyUser - Obtain username and password from the request body, locate
- * the appropriate user in the database, and then authenticate the submitted password
- * against the password stored in the database.
- */
-userController.verifyUser = async(req,res,next) => {
-  try {
-  const { userName,password } = req.body;
-  const user = await User.findOne({ userName });
-  const passwordMatch = await bcrypt.compare(password,user.password)
+// /**
+//  * verifyUser - Obtain username and password from the request body, locate
+//  * the appropriate user in the database, and then authenticate the submitted password
+//  * against the password stored in the database.
+//  */
+// userController.verifyUser = async(req,res,next) => {
+//   try {
+//   const { userName,password } = req.body;
+//   const user = await User.findOne({ userName });
+//   const passwordMatch = await bcrypt.compare(password,user.password)
 
   // console.log("user: ", user)
   if (!user) {
@@ -78,18 +78,18 @@ userController.verifyUser = async(req,res,next) => {
 }
 // deleteUser  - Delete a user from the database
 
-// getAllUsers - retrieve all users from the database
-userController.getAllUser = async (req, res, next) => {
-  try {
-    const users = await User.find({});
-    res.locals.users = users;
-    return next();
-  }catch (err) {
-    return next({
-      log: `Express error handler caught in userController.getAllUser: ${err} `,
-      status: 400,
-      message: { err: 'error occured while getting all user' },
-    })
-  }
-};
-module.exports = userController;
+// // getAllUsers - retrieve all users from the database
+// userController.getAllUser = async (req, res, next) => {
+//   try {
+//     const users = await User.find({});
+//     res.locals.users = users;
+//     return next();
+//   }catch (err) {
+//     return next({
+//       log: `Express error handler caught in userController.getAllUser: ${err} `,
+//       status: 400,
+//       message: { err: 'error occured while getting all user' },
+//     })
+//   }
+// };
+// module.exports = userController;
