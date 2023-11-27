@@ -30,7 +30,7 @@ app.post('/login', userController.verifyUser, (req, res) => {
 });
 //--------------------------------//
 app.patch('/updatepw/:name', userController.updateUser, (req, res) => {
-  res.sendStatus(201);
+  return res.sendStatus(201);
 });
 app.get('/secret', userController.getAllUser, (req, res) => {
   return res.status(200).send(res.locals.users);
