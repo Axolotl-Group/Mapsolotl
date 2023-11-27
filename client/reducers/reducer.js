@@ -1,14 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  test: "test",
+  listTrails: [],
 };
 
 const slice = createSlice({
-  name: "testslice",
+  name: 'testslice',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    DISPLAY_SEARCH: (state, action) => {
+      console.log('action.payload is ' + action.payload.data);
+      state.listTrails = [...action.payload.data];
+    },
+  },
 });
 
-export const {} = slice.actions;
+export const { DISPLAY_SEARCH } = slice.actions;
 export default slice.reducer;
