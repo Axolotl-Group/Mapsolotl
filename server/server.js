@@ -44,14 +44,14 @@ app.patch('/updatepw/:name', userController.updateUser, (req, res) => {
 
 //Reviews route CRUD
 //Create a new review
-app.post(‘/reviews/:id’, reviewController.createReview, (req, res) =>
+app.post('/reviews/:id', reviewController.createReview, (req, res) =>
   res.status(201).send(res.locals.saveReviews)
 );
 //Get reviews from a specific trail
-app.get(‘/reviews/:id’, reviewController.getReviews, (req, res) =>
+app.get('/reviews/:id' , reviewController.getReviews, (req, res) =>
   res.status(200).send(res.locals.reviews));
 //Update review
-app.put(‘/reviews/:trailId/:reviewId’, reviewController.updateReview, (req, res) =>
+app.put('/reviews/:trailId/:reviewId', reviewController.updateReview, (req, res) =>
   res.status(201).send(res.locals.updateReview)
 );
 // app.delete(‘/reviews’, reviewController.deleteReview, (req, res) => {
