@@ -18,8 +18,19 @@ body {
 .sub-header {
   width: 80%;
   height: 100%;
-  display: table;
-  vertical-align: middle;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 0;
+}
+
+.logo img {
+  height: 150px;
+  width: 150px;
+  clip-path: circle(50px at 80px 80px);
 }
 
 .logo h1 {
@@ -35,6 +46,7 @@ body {
 }
 
 .navbar {
+  width: 50%;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -45,10 +57,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  max-width: 400px;
+  background-color: blanchedalmond;
+  border-radius: 15px;
 }
 
 .App h1 {
   color: rgb(145, 76, 76);
+  text-align: center;
+}
+
+.App .inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
 }
