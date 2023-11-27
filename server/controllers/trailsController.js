@@ -3,9 +3,7 @@ const fetch = require('node-fetch');
 const trailsController = {};
 
 trailsController.getTrails = async (req, res, next) => {
-  const { lat, lon } = req.body;
-  console.log('req.body is: ', req.body);
-  console.log('req.params is:', req.params);
+  const { lat, lon } = req.query;
   console.log('req.query is:', req.query);
   const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}&lon=${lon}`;
   //const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=%3C${lat}%3E&lon=%3C${lon}%3E`;

@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const apiRouter = require('./routes/api');
-// const userController = require('./controllers/userController');
+const userController = require('./controllers/userController');
+const reviewController = require('./controllers/reviewController');
 
 // Body parser middleware for JSON data
 app.use(express.json());
@@ -57,6 +58,14 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
+
+// if (process.env.NODE_ENV === 'production') {
+//   // statically serve everything in the build folder on the route '/build'
+// }
+
+app.use((req, res) =>
+  res.status(404).send("This is not the page you're looking for...")
+);
 
 app.listen(3000);
 module.exports = app;
