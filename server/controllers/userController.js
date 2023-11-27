@@ -41,7 +41,7 @@ userController.verifyUser = async(req,res,next) => {
       res.redirect("/signup");
     } else if (!passwordMatch) {
       console.log("password incorrect")
-      res.redirect("/login");
+      res.redirect("/signup");
     }else{
       console.log("Login successfully")
       return next()
