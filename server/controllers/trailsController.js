@@ -34,7 +34,7 @@ trailsController.getTrails = async (req, res, next) => {
 };
 
 trailsController.getTrailInfo = async (req, res, next) => {
-  const { id } = req.query;
+  const { id } = req.body;
   const url = `https://trailapi-trailapi.p.rapidapi.com/trails/${id}`;
   const options = {
     method: 'GET',
