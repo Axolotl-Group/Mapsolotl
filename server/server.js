@@ -21,38 +21,37 @@ app.get('/', (req, res) => {
 });
 //Login
 
-app.post('/signup', userController.createUser, (req, res) => {
-  res.status(201).send('User created');
-});
+app.post('/signup', userController.createUser, (req, res) => 
+  res.status(201).send('User created')
+);
 
-app.post('/login', userController.verifyUser, (req, res) => {
-  res.status(200).send('Login successfully');
-});
+app.post('/login', userController.verifyUser, (req, res) => 
+  res.status(200).send('Login successfully')
+);
 //--------------------------------//
-app.patch('/updatepw/:name', userController.updateUser, (req, res) => {
-  return res.sendStatus(201);
-});
-app.get('/secret', userController.getAllUser, (req, res) => {
-  return res.status(200).send(res.locals.users);
-});
+app.patch('/updatepw/:name', userController.updateUser, (req, res) => 
+  res.sendStatus(201)
+);
+app.get('/secret', userController.getAllUser, (req, res) => 
+  res.status(200).send(res.locals.users)
+);
 
 //--------------------------------//
 //Reviews route CRUD
 
 //Create a new review
-app.post('/reviews/:id', reviewController.createReview, (req, res) => {
-  return res.status(201).send(res.locals.saveReviews);
-});
+app.post('/reviews/:id', reviewController.createReview, (req, res) => 
+  res.status(201).send(res.locals.saveReviews)
+);
 
 //Get reviews from a specific trail
-app.get('/reviews/:id', reviewController.getReviews, (req, res) => {
-  return res.status(200).send(res.locals.reviews);
-});
+app.get('/reviews/:id', reviewController.getReviews, (req, res) => 
+  res.status(200).send(res.locals.reviews));
 
 //Update review
-app.put('/reviews/:trailId/:reviewId', reviewController.updateReview, (req, res) => {
-  return res.status(201).send(res.locals.updateReview);
-});
+app.put('/reviews/:trailId/:reviewId', reviewController.updateReview, (req, res) => 
+  res.status(201).send(res.locals.updateReview)
+);
 
 // app.delete('/reviews', reviewController.deleteReview, (req, res) => {
 //   return res.status(201).send(res.locals.saveReviews);
