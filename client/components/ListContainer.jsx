@@ -1,31 +1,81 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import MoreInfo from './MoreInfo.jsx';
+import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
 
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
+  const dispatch = useDispatch();
+  async function infoClick(id) {
+    const response = await fetch(
+      '/api/info?' +
+        new URLSearchParams({
+          id: id,
+        })
+    );
+
+    const result = await response.json();
+    console.log('result is' + result);
+    dispatch(DISPLAY_MORE_INFO(result));
+  }
+
   const array = [];
-  for (let trail of listState) {
+  // for (let listState[i] of listState) {
+  for (let i = 0; i < listState.length; i++) {
     array.push(
-      <div className='list-of-trails'>
-        <h1>{trail.name}</h1>
-        <ul>
-          <li>{'Trail ID: ' + trail.id}</li>
-          <li>{'Length: ' + trail.length + 'miles'}</li>
-          <li>{'Description: ' + trail.description}</li>
-          <li>{'Directions: ' + trail.directions}</li>
-          <li>{'City: ' + trail.city}</li>
-          <li>{'Region: ' + trail.region}</li>
-          <li>{'Country: ' + trail.country}</li>
-          <li>{'Latitude: ' + trail.lat}</li>
-          <li>{'Longitude: ' + trail.lon}</li>
-          <li>{'Difficulty: ' + trail.difficulty}</li>
-          <li>{'Features: ' + trail.features}</li>
-          <li>
-            {'Website: '}
-            <a href={trail.url}>{trail.url}</a>
-          </li>
-          <img src={trail.thumbnail}></img>
-        </ul>
+      <div
+        className='list-of-trails'
+        key={i}
+      >
+        <h1>{listState[i].name}</h1>
+        <div className='location'>
+          <h3>
+            City:<span>{listState[i].city || 'N/A'}</span>
+          </h3>
+          <h3>
+            Region:<span>{listState[i].region || 'N/A'}</span>
+          </h3>
+          <h3>
+            Country:<span>{listState[i].country || 'N/A'}</span>
+          </h3>
+        </div>
+        <div className='deets'>
+          <h3>
+            Trail ID:<span>{listState[i].id || 'N/A'}</span>
+          </h3>
+          <h3>
+            Length:<span>{listState[i].length || 'N/A'}</span>
+          </h3>
+          <h3>
+            Difficulty:<span>{listState[i].difficulty || 'N/A'}</span>
+          </h3>
+          <h3>
+            Lat:<span>{listState[i].lat || 'N/A'}</span>
+          </h3>
+          <h3>
+            Long:<span>{listState[i].lon || 'N/A'}</span>
+          </h3>
+        </div>
+        <div className='features'>
+          <h3>
+            Features:<span>{listState[i].features || 'N/A'}</span>
+          </h3>
+        </div>
+        <img src={listState[i].thumbnail}></img>
+        <div>
+          {'Website: '}
+          <a href={listState[i].url}>{listState[i].url}</a>
+        </div>
+
+        <button
+          onClick={() => {
+            console.log(listState[i].id);
+            infoClick(listState[i].id);
+          }}
+        >
+          Get more info
+        </button>
+        <MoreInfo id={listState[i].id} />
       </div>
     );
   }

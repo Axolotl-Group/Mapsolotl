@@ -58,7 +58,7 @@ const App = () => {
             name='radius'
             type='text'
             id='radius'
-            placeholder='Search Radius in Miles'
+            placeholder='Default: 25 miles'
           ></input>
           <button
             onClick={searchClick}

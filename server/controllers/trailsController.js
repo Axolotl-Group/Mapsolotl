@@ -3,9 +3,9 @@ const fetch = require('node-fetch');
 const trailsController = {};
 
 trailsController.getTrails = async (req, res, next) => {
-  const { lat, lon } = req.query;
-  console.log('req.query is:', req.query);
-  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}&lon=${lon}`;
+  const { lat, lon, radius } = req.query;
+  // console.log('req.query is:', req.query);
+  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}&lon=${lon}&radius=${radius}`;
   //const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=%3C${lat}%3E&lon=%3C${lon}%3E`;
   const options = {
     method: 'GET',
@@ -34,8 +34,9 @@ trailsController.getTrails = async (req, res, next) => {
 };
 
 trailsController.getTrailInfo = async (req, res, next) => {
-  const { id } = req.body;
-  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/${id}`;
+  const { id } = req.query;
+  console.log('id is', id);
+  const url = `https://trailapi-trailapi.p.rapidapi.com/trails/${id.toString()}`;
   const options = {
     method: 'GET',
     headers: {

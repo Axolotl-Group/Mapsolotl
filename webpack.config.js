@@ -50,6 +50,7 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     historyApiFallback: true,
+    hot: true,
     static: {
       publicPath: '/build',
       directory: path.resolve(__dirname, 'build'),
