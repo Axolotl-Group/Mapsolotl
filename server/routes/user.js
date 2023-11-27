@@ -18,3 +18,5 @@ router.post('/login', userController.verifyUser, (req, res) =>
 router.patch('/updatepw/:name', userController.updateUser, (req, res) =>
   res.status(201).send('Password updated')
 );
+
+module.exports = router;

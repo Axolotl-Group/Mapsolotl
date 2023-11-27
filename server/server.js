@@ -4,7 +4,7 @@ const path = require('path');
 
 const apiRouter = require('./routes/api');
 const reviewRouter = require('./routes/reviews');
-const userRouter = require('.routes/user');
+const userRouter = require('./routes/user');
 
 // Body parser middleware for JSON data
 app.use(express.json());

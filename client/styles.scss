@@ -8,6 +8,22 @@ body {
   background-position: cover;
 }
 
+.App {
+  display: flex;
+  justify-content: space-between;
+
+  .search-container {
+    // align-self: flex-start;
+    max-height: 500px;
+  }
+  .main-container {
+    align-self: flex-end;
+    // margin-left: 500px;
+    // min-width: 800px;
+    // border: none;
+  }
+}
+
 .header {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
@@ -31,19 +47,23 @@ body {
   background-size: 160px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
-  background-position-x: left;
+  margin-left: 10px;
+  padding-right: 20px;
 
   img {
     height: 150px;
     width: 150px;
     clip-path: circle(50px at 85px 83px);
+    margin-bottom: 15px;
+    margin-right: 15px;
   }
+
   h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
     font-size: 40px;
-    color: blueviolet;
-    font-weight: 800;
+    color: rgb(2, 234, 199);
+    font-weight: 600;
   }
   h1 span {
     color: pink;
@@ -74,7 +94,7 @@ body {
 }
 
 .search-container,
-.main-container {
+.list-of-trails {
   border: 2px solid rgba(69, 39, 169, 0.6);
   display: flex;
   flex-direction: column;
@@ -84,16 +104,43 @@ body {
   background-color: rgba(173, 160, 160, 0.8);
   border-radius: 15px;
   margin-top: 10px;
+  padding: 20px;
   h1 {
-    color: blanchedalmond;
+    color: rgba(69, 39, 169);
     text-align: center;
   }
+
+  .location,
+  .deets,
+  .features,
+  .description,
+  .directions {
+    // margin-left: 15px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  h3 span {
+    margin-left: 5px;
+    font: 20px;
+    font-weight: 200;
+  }
+
   .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5px;
   }
+
+  input {
+    margin: 10px 0;
+  }
+
   button {
     background-color: rgba(69, 39, 169, 0.6);
     color: blanchedalmond;
@@ -101,29 +148,23 @@ body {
     border-style: none;
     height: 40px;
     font-size: larger;
-    margin-right: 10px;
+    margin: 15px 0;
     border-radius: 8px;
   }
+
   button:hover {
     cursor: pointer;
     transform: scale(1.25);
   }
 }
-.main-container {
-  margin-left: 500px;
-  min-width: 800px;
-  border: none;
-}
 
 .list-of-trails {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  max-width: 700px;
+  min-width: 700px;
   img {
     width: 400px;
   }
-  p {
+  ul,
+  li {
+    text-align: center;
   }
 }
