@@ -9,6 +9,7 @@ const ListContainer = () => {
       <div className='list-of-trails'>
         <h1>{trail.name}</h1>
         <ul>
+          <li>{'Trail ID: ' + trail.id}</li>
           <li>{'Length: ' + trail.length + 'miles'}</li>
           <li>{'Description: ' + trail.description}</li>
           <li>{'Directions: ' + trail.directions}</li>
