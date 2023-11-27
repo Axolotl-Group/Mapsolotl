@@ -33,7 +33,7 @@ const App = () => {
                 lat: document.getElementById('lat').value,
                 lon: document.getElementById('long').value,
               })
-          )
+          ).then(res => res.json())
         }
         id='submit'
       >

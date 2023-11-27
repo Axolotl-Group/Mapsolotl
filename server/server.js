@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const userController = require('./controllers/userController');
 const trailsController = require('./controllers/trailsController');
+const reviewController = require('./controllers/reviewController')
 
 // Body parser middleware for JSON data
 app.use(express.json());
@@ -18,21 +19,45 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
-// app.get('/secret', userController.getAllUser, (req, res) => {
-//   return res.status(200).send(res.locals.users);
-// });
-// app.post('/signup', userController.createUser, (req, res) => {
-//   res.sendStatus(201);
-// });
+//Login
 
-// app.post('/login', userController.verifyUser, (req, res) => {
-//   res.status(200).send('Login successfully');
-// });
+app.post('/signup', userController.createUser, (req, res) => {
+  res.status(201).send('User created');
+});
 
+app.post('/login', userController.verifyUser, (req, res) => {
+  res.status(200).send('Login successfully');
+});
+//--------------------------------//
 app.patch('/updatepw/:name', userController.updateUser, (req, res) => {
   res.sendStatus(201);
 });
+app.get('/secret', userController.getAllUser, (req, res) => {
+  return res.status(200).send(res.locals.users);
+});
 
+//--------------------------------//
+//Reviews route CRUD
+
+//Create a new review
+app.post('/reviews/:id', reviewController.createReview, (req, res) => {
+  return res.status(201).send(res.locals.saveReviews);
+});
+
+//Get reviews from a specific trail
+app.get('/reviews/:id', reviewController.getReviews, (req, res) => {
+  return res.status(200).send(res.locals.reviews);
+});
+
+//Update review
+app.put('/reviews/:trailId/:reviewId', reviewController.updateReview, (req, res) => {
+  return res.status(201).send(res.locals.updateReview);
+});
+
+// app.delete('/reviews', reviewController.deleteReview, (req, res) => {
+//   return res.status(201).send(res.locals.saveReviews);
+// });
+//Trails
 app.get('/search', trailsController.getTrails, (req, res) =>
   res.status(200).json(res.locals.trails)
 );
@@ -53,12 +78,7 @@ app.use((err, req, res, next) => {
 
 // if (process.env.NODE_ENV === 'production') {
 //   // statically serve everything in the build folder on the route '/build'
-
 // }
-
-app.get('/search', trailsController.getTrails, (req, res) =>
-  res.status(200).json(res.locals.trails)
-);
 
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
