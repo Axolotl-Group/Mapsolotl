@@ -1,4 +1,10 @@
 body {
+
+  // background-image: url("https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57");
+//   background-image: url("https://cdn.pixabay.com/photo/2021/05/06/09/55/yeti-6233039_1280.jpg");
+  // background-image: url("https://images.pexels.com/photos/2990678/pexels-photo-2990678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+//   background-size: cover;
+
   background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
   background-position: cover;
 }
@@ -6,7 +12,7 @@ body {
 .header {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
-  height: 150px;
+  height: 140px;
   // margin: 10px;
   color: white;
   background-color: rgba(173, 160, 160, 0.7);
@@ -15,8 +21,19 @@ body {
 .sub-header {
   width: 80%;
   height: 100%;
-  display: table;
-  vertical-align: middle;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 0;
+}
+
+.logo img {
+  height: 150px;
+  width: 150px;
+  clip-path: circle(50px at 80px 80px);
 }
 
 .logo h1 {
@@ -32,6 +49,7 @@ body {
 }
 
 .navbar {
+  width: 50%;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -42,12 +60,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  max-width: 400px;
+  background-color: blanchedalmond;
+  border-radius: 15px;
   justify-content: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .App h1 {
   color: rgb(145, 76, 76);
+  text-align: center;
+}
+
+.App .inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
 }
 
 .list-of-trails {
