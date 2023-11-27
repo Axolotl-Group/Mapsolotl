@@ -19,6 +19,12 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+app.get('/signup', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../signup.html'));
+});
+
+app.get('/login',(req,res) => 
+res.status(200).sendFile(path.resolve(__dirname, '../login.html')))
 
 app.use('/api/', apiRouter);
 app.use('/reviews/', reviewRouter);
