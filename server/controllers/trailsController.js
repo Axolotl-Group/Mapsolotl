@@ -4,8 +4,6 @@ const trailsController = {};
 
 trailsController.getTrails = async (req, res, next) => {
   const { lat, lon } = req.query;
-  console.log('req.body is: ', req.body);
-  console.log('req.params is:', req.params);
   console.log('req.query is:', req.query);
   const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=${lat}&lon=${lon}`;
   //const url = `https://trailapi-trailapi.p.rapidapi.com/trails/explore/?lat=%3C${lat}%3E&lon=%3C${lon}%3E`;
@@ -19,8 +17,9 @@ trailsController.getTrails = async (req, res, next) => {
 
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
-    console.log(result);
+    const result = await response.json();
+    console.log('result type is ', typeof result);
+    console.log('result is', result);
     res.locals.trails = result;
     return next();
   } catch (error) {

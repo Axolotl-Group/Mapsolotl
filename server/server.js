@@ -18,20 +18,25 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
-// app.get('/secret', userController.getAllUser, (req, res) => {
-//   return res.status(200).send(res.locals.users);
-// });
-// app.post('/signup', userController.createUser, (req, res) => {
-//   res.sendStatus(201);
-// });
+app.get('/secret', userController.getAllUser, (req, res) => {
+  return res.status(200).send(res.locals.users);
+});
+app.post('/signup', userController.createUser, (req, res) => {
+  return res.sendStatus(201);
+});
 
-// app.post('/login', userController.verifyUser, (req, res) => {
-//   res.status(200).send('Login successfully');
-// });
+app.post('/login', userController.verifyUser, (req, res) => {
+  return res.status(200).send('Login successfully');
+});
 
 app.patch('/updatepw/:name', userController.updateUser, (req, res) => {
-  res.sendStatus(201);
+  return res.sendStatus(201);
 });
+
+// if (process.env.NODE_ENV === 'production') {
+//   // statically serve everything in the build folder on the route '/build'
+
+// }
 
 app.get('/search', trailsController.getTrails, (req, res) =>
   res.status(200).json(res.locals.trails)

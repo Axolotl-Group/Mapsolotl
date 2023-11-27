@@ -78,18 +78,18 @@ userController.verifyUser = async(req,res,next) => {
 }
 // deleteUser  - Delete a user from the database
 
-// // getAllUsers - retrieve all users from the database
-// userController.getAllUser = async (req, res, next) => {
-//   try {
-//     const users = await User.find({});
-//     res.locals.users = users;
-//     return next();
-//   }catch (err) {
-//     return next({
-//       log: `Express error handler caught in userController.getAllUser: ${err} `,
-//       status: 400,
-//       message: { err: 'error occured while getting all user' },
-//     })
-//   }
-// };
-// module.exports = userController;
+// getAllUsers - retrieve all users from the database
+userController.getAllUser = async (req, res, next) => {
+  try {
+    const users = await User.find({});
+    res.locals.users = users;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in userController.getAllUser: ${err} `,
+      status: 400,
+      message: { err: 'error occured while getting all user' },
+    });
+  }
+};
+module.exports = userController;
