@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node server/server.js",
-    "build": "webpack",
-    "dev": "rm -rf build & NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack server"
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open\" \"cross-env NODE_ENV=development node server/server.js\""
   },
   "nodemonConfig": {
     "ignore": [
