@@ -55,9 +55,8 @@ module.exports = {
       publicPath: '/build',
       directory: path.resolve(__dirname, 'build'),
     },
-    headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/**': { target: 'http://localhost:3000/', secure: false },
+      '/': 'http://localhost:3000/',
     },
   },
 };
