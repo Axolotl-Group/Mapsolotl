@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: process.env.NODE_ENV,
-  //   mode: 'development',
+  // mode: process.env.NODE_ENV,
+  mode: 'development',
   entry: {
     src: './client/index.js',
   },
@@ -55,9 +55,8 @@ module.exports = {
       publicPath: '/build',
       directory: path.resolve(__dirname, 'build'),
     },
-    headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/**': { target: 'http://localhost:3000/', secure: false },
+      '/': 'http://localhost:3000/',
     },
   },
 };

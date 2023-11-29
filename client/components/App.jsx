@@ -21,7 +21,7 @@ const App = () => {
     );
 
     const result = await response.json();
-    console.log('result is' + result);
+    //console.log('result is' + result);
     dispatch(DISPLAY_SEARCH(result));
   }
 
@@ -40,12 +40,7 @@ const App = () => {
           ></input>
 
           <label htmlFor='lat'>LATITUDE: </label>
-          <input
-            name='lat'
-            type='text'
-            id='lat'
-            placeholder='Optional'
-          ></input>
+          <input name='lat' type='text' id='lat' placeholder='Optional'></input>
           <label htmlFor='long'>LONGITUDE: </label>
           <input
             name='lon'
@@ -60,10 +55,7 @@ const App = () => {
             id='radius'
             placeholder='Default: 25 miles'
           ></input>
-          <button
-            onClick={searchClick}
-            id='submit'
-          >
+          <button onClick={searchClick} id='submit'>
             SUBMIT
           </button>
         </div>

@@ -30,27 +30,21 @@ userController.createUser = async (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   try {
     const { userName, password } = req.body;
+    console.log('req.body:', req.body);
     const user = await User.findOne({ userName });
+    console.log('user:', userName);
     const passwordMatch = await bcrypt.compare(password, user.password);
-
-    console.log('user: ', user);
+    console.log('a new log');
+    console.log('user: ', userName);
     if (!user) {
       //redirect to signup if user doesn't exist
       res.redirect('/signup');
     } else if (!passwordMatch) {
-<<<<<<< HEAD
       console.log('password incorrect');
-      res.redirect('/login');
+      res.redirect('/signup');
     } else {
       console.log('Login successfully');
       return next();
-=======
-      console.log("password incorrect")
-      res.redirect("/signup");
-    }else{
-      console.log("Login successfully")
-      return next()
->>>>>>> dev
     }
   } catch (err) {
     return next({
