@@ -60,7 +60,7 @@ const App = () => {
             placeholder="Default: 25 miles"
           ></input>
 
-          <button onClick={searchClick} id="submit" data-testid="submit-button">
+          <button onClick={searchClick} id="submit">
             SUBMIT
           </button>
         </div>

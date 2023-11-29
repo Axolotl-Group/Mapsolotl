@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
@@ -26,6 +29,12 @@ describe('Unit testing React components', () => {
     test('Submit button should be rendered', () => {
       const submitButton = screen.getByRole('button', { name: /SUBMIT/i });
       expect(submitButton).toBeInTheDocument();
+    });
+
+    test('Rendered text', () => {
+      const expectedText = 'GET BUSY BIKING OR GET BUSY DOING SOMETHING ELSE';
+      const textElement = screen.getByClassName('search-container');
+      expect(textElement).toContain(expectedText);
     });
   });
 });

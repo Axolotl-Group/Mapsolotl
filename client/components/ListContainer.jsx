@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MoreInfo from './MoreInfo.jsx';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
+import Box from './Box.jsx';
 
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
@@ -22,6 +23,10 @@ const ListContainer = () => {
   }
 
   const array = [];
+  listState.map((obj) => {
+    return <Box props={obj} />;
+  });
+
   // for (let listState[i] of listState) {
   for (let i = 0; i < listState.length; i++) {
     array.push(

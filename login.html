@@ -2,18 +2,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Mapsolotl</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body id="login-container">
   Login
-  <form method="POST" action='/login'>
-    <input name="username" type="text" placeholder="username"></input>
+  <!-- Needed to change this to /users from just /login / -->
+  <form method="POST" action='/users/login'>
+    <input name="userName" type="text" placeholder="username"></input>
     <input name="password" type="password" placeholder="password"></input>
-    <input type='submit' value="login">
+    <input type='submit' value="Login">
   </form>
   <a href='./signup'>Sign up</a>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> dev

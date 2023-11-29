@@ -23,8 +23,9 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../signup.html'));
 });
 
-app.get('/login',(req,res) => 
-res.status(200).sendFile(path.resolve(__dirname, '../login.html')))
+app.get('/login', (req, res) =>
+  res.status(200).sendFile(path.resolve(__dirname, '../login.html'))
+);
 
 app.use('/api/', apiRouter);
 app.use('/reviews/', reviewRouter);
@@ -60,5 +61,7 @@ app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
-app.listen(3000);
-module.exports = app;
+const server = app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+module.exports = { app, server };
