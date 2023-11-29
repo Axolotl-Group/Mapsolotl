@@ -10,7 +10,7 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {
     DISPLAY_SEARCH: (state, action) => {
-      //console.log('action.payload is ' + action.payload.data);
+      console.log('action.payload is ' + action.payload.data);
       state.listTrails = [...action.payload.data];
     },
     DISPLAY_MORE_INFO: (state, action) => {
