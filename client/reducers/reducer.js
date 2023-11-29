@@ -4,7 +4,7 @@ const initialState = {
   listTrails: [],
   moreInfo: {},
 };
-
+// createSlice refernces state without mutating state
 const slice = createSlice({
   name: 'testslice',
   initialState: initialState,

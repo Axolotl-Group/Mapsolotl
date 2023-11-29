@@ -33171,6 +33171,7 @@ const rawCodesArray = [
 // console.log(test);
 // console.log(test.split(","));
 
+// love this name 
 const bullshitFunc = (array) => {
   return array.reduce((cache, el) => {
     // console.log(el);
