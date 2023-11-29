@@ -38,19 +38,11 @@ userController.verifyUser = async (req, res, next) => {
       //redirect to signup if user doesn't exist
       res.redirect('/signup');
     } else if (!passwordMatch) {
-<<<<<<< HEAD
       console.log('password incorrect');
       res.redirect('/login');
     } else {
       console.log('Login successfully');
       return next();
-=======
-      console.log("password incorrect")
-      res.redirect("/signup");
-    }else{
-      console.log("Login successfully")
-      return next()
->>>>>>> dev
     }
   } catch (err) {
     return next({
