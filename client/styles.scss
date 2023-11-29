@@ -1,10 +1,14 @@
 body {
-  // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
-  background-image: url('https://cdn.pixabay.com/photo/2021/05/06/09/55/yeti-6233039_1280.jpg');
-  // background-image: url('https://images.pexels.com/photos/2990678/pexels-photo-2990678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  //background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
+ // background-image: url('https://cdn.pixabay.com/photo/2021/05/06/09/55/yeti-6233039_1280.jpg');
+ // background-image: url('https://images.pexels.com/photos/2990678/pexels-photo-2990678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
   background-size: 100%;
-
-  // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
+  background-image: url('https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  
+ // background-image: url('https://www.pexels.com/photo/gray-walkway-near-green-leafed-trees-1857628/');
+  //background-image: url('https://images.pexels.com/photos/19302394/pexels-photo-19302394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  
+// background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
   background-position: cover;
 }
 
@@ -30,7 +34,8 @@ body {
   height: 140px;
   // margin: 10px;
   color: white;
-  background-color: rgba(173, 160, 160, 0.5);
+  //background-color: rgba(173, 160, 160, 0.5);
+  background-color: rgb(8, 133, 137, 0.6);
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
@@ -42,8 +47,9 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 120px;
-  background-color: rgba(69, 39, 169, 0.6);
-  background-position: center;
+  //background-color: rgba(69, 39, 169, 0.6);
+  background-color: rgba(8, 133, 137, 0.6);
+  //background-position: center;
   background-size: 160px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -51,9 +57,10 @@ body {
   padding-right: 20px;
 
   img {
-    height: 150px;
-    width: 150px;
-    clip-path: circle(50px at 85px 83px);
+    height: 120px;
+    width: 120px;
+    //clip-path: circle(50px at 85px 83px);
+    border-radius: 10px;
     margin-bottom: 15px;
     margin-right: 15px;
   }
@@ -61,12 +68,14 @@ body {
   h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
-    font-size: 40px;
+    font-size: 50px;
+    //color: rgb(2, 234, 199);
     color: rgb(2, 234, 199);
     font-weight: 600;
   }
   h1 span {
-    color: pink;
+    //color: pink;
+    color: rgb(253, 145, 2);
     font-weight: 200;
   }
 }
@@ -86,7 +95,8 @@ body {
     border-radius: 8px;
   }
   button:hover {
-    background-color: rgba(69, 39, 169, 0.6);
+    //background-color: rgba(69, 39, 169, 0.6);
+    background-color: rgb(8, 133, 137, 0.6);
 
     cursor: pointer;
     transform: scale(1.25);
@@ -95,7 +105,8 @@ body {
 
 .search-container,
 .list-of-trails {
-  border: 2px solid rgba(69, 39, 169, 0.6);
+  //border: 2px solid rgba(69, 39, 169, 0.6);
+  border: rgb(8, 133, 137, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,6 +117,7 @@ body {
   margin-top: 10px;
   padding: 20px;
   h1 {
+    //color: rgb(8, 133, 137, 0.6);
     color: rgba(69, 39, 169);
     text-align: center;
   }
@@ -142,8 +154,11 @@ body {
   }
 
   button {
-    background-color: rgba(69, 39, 169, 0.6);
-    color: blanchedalmond;
+    //background-color: rgba(69, 39, 169, 0.6);
+    background-color: rgb(8, 133, 137, 0.6);
+    color: rgb(253, 145, 2);
+    //color: blanchedalmond;
+    //color: rgb(2, 234, 199);
 
     border-style: none;
     height: 40px;
