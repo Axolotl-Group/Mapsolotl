@@ -14,7 +14,7 @@ const slice = createSlice({
       state.listTrails = [...action.payload.data];
     },
     DISPLAY_MORE_INFO: (state, action) => {
-      console.log('action.payload is ' + action.payload.data);
+      //console.log('action.payload is ' + action.payload.data);
       let temp = { ...state.moreInfo };
       temp[action.payload.data[0].id] = action.payload.data[0];
       state.moreInfo = temp;
