@@ -14,6 +14,7 @@ mongoose
 const userSchema = new Schema({
   userName: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  userNameDisc: { type: String, required: false },
 });
 
 // creats a model for the 'user' collection that will be part of the export

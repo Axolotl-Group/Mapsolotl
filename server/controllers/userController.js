@@ -1,5 +1,12 @@
 const User = require('../userModel');
 const bcrypt = require('bcrypt');
+
+//have to import so that the request method in getToken works
+const { request } = require('undici');
+//import constants from config.json file (swapped to jake's client id & client secret before running should still work so long as config is set up)
+require('dotenv').config();
+const { clientId, clientSecret, port } = require('../../config.json');
+
 const userController = {};
 
 //createUser - create and save a new User into the database.
@@ -91,13 +98,32 @@ userController.getAllUser = async (req, res, next) => {
   }
 };
 
-//Oauth
+//pulls the authorization code that Discord's OAuth passes back
+//from URL. (query) => code
+//then pings the /api/oauth2/token endpoint at discord with a post request
+// w/the client id and secret along w/auth code
+// this should return the specific access token to
+// find the user data
+// once we have the access token,
+// do a request to api/users/@me with that token
+
+// 1. User goes to the Discord page.
+// 2. Discord redirects back to our /users/login endpoint (not just /login!). URL being sent back includes a /code?<string that is the discord auth code> chunk
+// 3. user router sees a get request at the /login endpoint.
+// 4. userController.getToken is invoked by the router.
+// 5. getToken parses the authentication code, pulling it from the URL.
+// 6. if a code is present in the URL, send a request to Discord's token endpoint.
+// 7. if the code is correct (ie, no one messed w/it in transit), the auth token endpoint responds with an auth token. This still isn't the user information, just a token to get it.
+// 8. Token is then passed as the authorization in the header of a request to Discords (different) /users/@me endpoint.
+// 9. If the auth token is valid, the /users/@me endpoint responds with the user information we want.
 userController.getToken = async ({ query }, response) => {
   const { code } = query;
   console.log('inside this.getToken, outside conditional');
   if (code) {
     console.log('inside condition in getToken');
+    console.log('client secret', clientSecret);
     try {
+      console.log('trying to request token');
       const tokenResponseData = await request(
         'https://discord.com/api/oauth2/token',
         {
@@ -107,7 +133,7 @@ userController.getToken = async ({ query }, response) => {
             client_secret: clientSecret,
             code,
             grant_type: 'authorization_code',
-            redirect_uri: `http://localhost:${port}`,
+            redirect_uri: `http://localhost:${port}/users/login`, //we still want this to ping back to the users/login page (eg, to this controller)
             scope: 'identify',
           }).toString(),
           headers: {
@@ -117,18 +143,21 @@ userController.getToken = async ({ query }, response) => {
       );
 
       const oauthData = await tokenResponseData.body.json();
+      console.log(
+        `token type: ${oauthData.token_type}, token value: ${oauthData.access_token}`
+      );
 
       const userResult = await request('https://discord.com/api/users/@me', {
         headers: {
           authorization: `${oauthData.token_type} ${oauthData.access_token}`,
         },
       });
-      console.log(userResult);
-
-      console.log(await userResult.body.json());
-    } catch (error) {
       // NOTE: An unauthorized token will not throw an error
       // tokenResponseData.statusCode will be 401
+      //console.log(userResult);
+
+      console.log('Retrieved user data:', await userResult.body.json());
+    } catch (error) {
       console.error(error);
     }
   }
