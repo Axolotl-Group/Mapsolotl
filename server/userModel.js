@@ -14,6 +14,10 @@ mongoose
 const userSchema = new Schema({
   userName: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  //additional fields in the User object to hold ... saved searches,
+  // saved trails/urls of the trail listing from the API
+  //query the database during load
+  //passing the user information to the store
 });
 
 // creats a model for the 'user' collection that will be part of the export

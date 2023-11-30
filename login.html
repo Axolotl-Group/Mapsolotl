@@ -2,35 +2,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Mapsolotl</title>
-  <a id="login" style="display: none;" href="your-oauth2-URL-here">Identify Yourself</a>
-<!-- <script type="module" src="/oauth.js"> </script>
-</head> -->
+  <!-- <script type="module" src="/oauth.js"> </script>-->
+</head> 
+<body>
 <script>	
-function generateRandomString() {
-	let randomString = '';
-	const randomNumber = Math.floor(Math.random() * 10);
+// function generateRandomString() {
+// 	let randomString = '';
+// 	const randomNumber = Math.floor(Math.random() * 10);
 
-	for (let i = 0; i < 20 + randomNumber; i++) {
-		randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
-	}
+// 	for (let i = 0; i < 20 + randomNumber; i++) {
+// 		randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+// 	}
 
-	return randomString;
-  }
+// 	return randomString;
+//   }
 window.onload = () => {
   const fragment = new URLSearchParams(window.location.hash.slice(1));
+  //example URL:
+  //http://localhost:3000/login#token_type=Bearer&access_token=Whc3Mw1WfMsOzk120ZsZE7g0FmTpYh&expires_in=604800&scope=identify
   const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
   if (!accessToken) {
-    const randomString = generateRandomString();
-		localStorage.setItem('oauth-state', randomString);
+    // const randomString = generateRandomString();
+		// localStorage.setItem('oauth-state', randomString);
 
-		document.getElementById('login').href += `&state=${btoa(randomString)}`;
+		// document.getElementById('login').href += `&state=${btoa(randomString)}`;
 		return (document.getElementById('login').style.display = 'block');
 	}
 
-  if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
-	return console.log('You may have been clickjacked!');
-  }
+  // if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
+	// return console.log('You may have been clickjacked!');
+  // }
 
   fetch('https://discord.com/api/users/@me', {
     headers: {
@@ -42,10 +44,10 @@ window.onload = () => {
       const { id, username, discriminator } = response;
       document.getElementById('info').innerText += `UserID: ${id} Username+Discriminator:${username}#${discriminator}`;
     })
+    //.then() invoke a callback to create a new record in the discordUser database like we would do with a username+password
     .catch(console.error);
   };</script>
-<body>
-  <div id="info"></div>
+  <div id="info">Yup</div>
   Login
   <!-- Needed to change this to /users from just /login / -->
   <form method="POST" action='/users/login'>

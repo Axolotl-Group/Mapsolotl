@@ -1,4 +1,5 @@
 const User = require('../userModel');
+const Disc_User = require('../discordUserModel');
 const bcrypt = require('bcrypt');
 const userController = {};
 
