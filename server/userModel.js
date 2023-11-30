@@ -6,6 +6,8 @@ mongoose
   .connect(process.env.MONGO_URI, {
     // sets the name of the DB that our collections are part of
     dbName: 'users',
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => console.log('Connected to Database: users.'))
   .catch((err) => console.log(err));
