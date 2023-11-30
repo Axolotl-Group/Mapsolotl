@@ -13,9 +13,14 @@ mongoose
   .catch((err) => console.log(err));
 
 // // sets a schema for the 'user' collection
+// VERY CAREFUL TESTING!!!
+// Set username to not have to be unique, which WILL cause problems if we screw with it
+// will resolve tomorrow
 const userSchema = new Schema({
-  userName: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  userType: { type: String, required: true },
+  userName: { type: String, required: false, unique: false },
+  password: { type: String, required: false },
+  userNameDisc: { type: String, required: false },
 });
 
 // creats a model for the 'user' collection that will be part of the export
