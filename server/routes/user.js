@@ -7,9 +7,9 @@ const router = express.Router();
 router.get('/secret', userController.getAllUser, (req, res) =>
   res.status(200).send(res.locals.users)
 );
-router.post('/signup', userController.createUser, (req, res) => {
-  return res.status(201).send('User Create successfully');
-});
+router.post('/signup', userController.createUser, (req, res) =>
+  res.status(201).redirect('/')
+);
 
 router.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).redirect('/');

@@ -37,7 +37,7 @@ const Box = ({ props, filterValue }) => {
       style={{ display: shouldRender ? 'block' : 'none' }}
     >
       <h1>{props.name}</h1>
-      <div onClick={handleHeartClick}>
+      <div onClick={handleHeartClick} className='heart'>
         <FaHeart
           size={30}
           style={{ color: isLikeed ? '#b91c1c' : '#fefce8' }}
@@ -82,15 +82,16 @@ const Box = ({ props, filterValue }) => {
         {'Website: '}
         <a href={props.url}>{props.url}</a>
       </div>
-
-      <button
-        onClick={() => {
-          console.log(props.id);
-          infoClick(props.id);
-        }}
-      >
-        Get more info
-      </button>
+      <div className='infoButton'>
+        <button
+          onClick={() => {
+            console.log(props.id);
+            infoClick(props.id);
+          }}
+        >
+          Get more info
+        </button>
+      </div>
       <MoreInfo id={props.id} />
     </div>
   );
