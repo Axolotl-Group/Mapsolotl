@@ -19,48 +19,5 @@
   <!-- static discord oauth login -- will likely need to update to generate dynamically -->
   <!-- <a id="login" style="display: block;" href="https://discord.com/api/oauth2/authorize?client_id=1179174881447907389&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin&response_type=code&scope=identify">Identify Yourself</a> -->
   <a id="login" style="display: block;" href="https://discord.com/api/oauth2/authorize?client_id=1179167732873306262&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fusers%2Flogin&response_type=code&scope=identify">Identify Yourself</a>
-  
-
-  <!-- <script>
-    function generateRandomString() {
-          let randomString = '';
-          const randomNumber = Math.floor(Math.random() * 10);
-
-          for (let i = 0; i < 20 + randomNumber; i++) {
-            randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
-          }
-          return randomString;
-        }
-        window.onload = () => {
-          const fragment = new URLSearchParams(window.location.hash.slice(1));
-          const [accessToken, tokenType, state] = [fragment.get('access_token'), fragment.get('token_type'), fragment.get('state')];
-
-          if (!accessToken) {
-            const randomString = generateRandomString();
-            localStorage.setItem('oauth-state', randomString);
-
-            document.getElementById('login').href += `&state=${encodeURIComponent(btoa(randomString))}`;
-            return document.getElementById('login').style.display = 'block';
-          }
-
-          if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
-            return console.log('You may have been click-jacked!');
-          }
-
-          fetch('https://discord.com/api/users/@me', {
-            headers: {
-              authorization: `${tokenType} ${accessToken}`,
-            },
-          })
-            .then(result => result.json())
-            .then(response => {
-              const { username, discriminator } = response;
-              document.getElementById('info').innerText += ` ${username}#${discriminator}`;
-            })
-            .catch(console.error);
-        }
-
-  </script> -->
-
 </body>
 </html>
