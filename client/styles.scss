@@ -15,6 +15,11 @@ $seconary-color: #58c2e2;
 * {
   font-family: 'Russo One', sans-serif;
 }
+button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
 .App {
   // display: flex;
   // justify-content: space-between;
@@ -219,4 +224,10 @@ $seconary-color: #58c2e2;
   gap: 30px;
   padding: 20px;
   justify-content: center;
+}
+.filterbuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
 }

@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Box from './Box.jsx';
+import FilterButton from './FilterButton.jsx';
 
 const ListContainer = () => {
-  const listState = useSelector((store) => store.list.listTrails);
+  const [filterValue, setFilterValue] = useState('');
 
+  const listState = useSelector((store) => store.list.listTrails);
+  const handleFilterChange = (newValue) => {
+    setFilterValue(newValue);
+  };
   return (
-    <div className="main-container">
-      {listState.map((obj) => {
-        return <Box key={obj.id} props={obj} />;
-      })}
+    <div>
+      <div>
+        {console.log(`ListContainer`)}
+        <FilterButton
+          filterValue={filterValue}
+          onFilterChange={handleFilterChange}
+        />
+      </div>
+      <div className='main-container'>
+        {listState.map((obj) => {
+          //console.log(filterValue);
+          return <Box key={obj.id} props={obj} filterValue={filterValue} />;
+        })}
+      </div>
     </div>
   );
 };

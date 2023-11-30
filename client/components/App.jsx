@@ -27,25 +27,25 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <div className="search-container">
+    <div className='App'>
+      <div className='search-container'>
         <h1>Bike More, Worry Less</h1>
-        <div className="inputs">
-          <input name="zip" type="text" id="zip" placeholder="ZIP CODE"></input>
+        <div className='inputs'>
+          <input name='zip' type='text' id='zip' placeholder='ZIP CODE'></input>
           <input
-            name="radius"
-            type="text"
-            id="radius"
-            placeholder="MILE RADIUS"
+            name='radius'
+            type='text'
+            id='radius'
+            placeholder='MILE RADIUS'
           ></input>
 
-          <button onClick={searchClick} id="submit">
+          <button onClick={searchClick} id='submit'>
             SUBMIT
           </button>
         </div>
       </div>
 
-      <div className="main-container2">
+      <div className='main-container2'>
         {isLoading ? <Loading /> : <ListContainer />}
       </div>
     </div>

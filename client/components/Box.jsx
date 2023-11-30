@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
 import { FaHeart } from 'react-icons/fa';
 
-const Box = ({ props }) => {
+const Box = ({ props, filterValue }) => {
   const [isLikeed, setIsLikeed] = useState(false);
   const dispatch = useDispatch();
 
@@ -26,8 +26,16 @@ const Box = ({ props }) => {
     dispatch(DISPLAY_MORE_INFO(result));
   }
 
+  // Conditionally render based on filterValue
+  const shouldRender =
+    !filterValue ||
+    props.difficulty.toLowerCase().includes(filterValue.toLowerCase());
+
   return (
-    <div className="list-of-trails">
+    <div
+      className='list-of-trails'
+      style={{ display: shouldRender ? 'block' : 'none' }}
+    >
       <h1>{props.name}</h1>
       <div onClick={handleHeartClick}>
         <FaHeart
@@ -36,7 +44,7 @@ const Box = ({ props }) => {
         />
       </div>
 
-      <div className="location">
+      <div className='location'>
         <h3>
           City:<span>{props.city || 'N/A'}</span>
         </h3>
@@ -47,7 +55,7 @@ const Box = ({ props }) => {
           Country:<span>{props.country || 'N/A'}</span>
         </h3>
       </div>
-      <div className="deets">
+      <div className='deets'>
         <h3>
           Trail ID:<span>{props.id || 'N/A'}</span>
         </h3>
@@ -64,7 +72,7 @@ const Box = ({ props }) => {
           Long:<span>{props.lon || 'N/A'}</span>
         </h3>
       </div>
-      <div className="features">
+      <div className='features'>
         <h3>
           Features:<span>{props.features || 'N/A'}</span>
         </h3>
