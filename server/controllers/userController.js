@@ -29,6 +29,19 @@ userController.createUser = async (req, res, next) => {
   }
 };
 
+userController.createDiscordUser = async (req, res, next) => {
+  const { id, username, discriminator } = res.locals.userInfo;
+  console.log(id, username, discriminator);
+  try {
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in userController.createUser: ${err} `,
+      status: 400,
+      message: { err: 'error occured while creating user' },
+    });
+  }
+};
+
 // /**
 //  * verifyUser - Obtain username and password from the request body, locate
 //  * the appropriate user in the database, and then authenticate the submitted password
@@ -116,7 +129,7 @@ userController.getAllUser = async (req, res, next) => {
 // 7. if the code is correct (ie, no one messed w/it in transit), the auth token endpoint responds with an auth token. This still isn't the user information, just a token to get it.
 // 8. Token is then passed as the authorization in the header of a request to Discords (different) /users/@me endpoint.
 // 9. If the auth token is valid, the /users/@me endpoint responds with the user information we want.
-userController.getToken = async ({ query }, response) => {
+userController.getToken = async ({ query }, res, next) => {
   const { code } = query;
   console.log('inside this.getToken, outside conditional');
   if (code) {
@@ -156,13 +169,18 @@ userController.getToken = async ({ query }, response) => {
       // tokenResponseData.statusCode will be 401
       //console.log(userResult);
 
-      console.log('Retrieved user data:', await userResult.body.json());
+      const userInfoObj = await userResult.body.json();
+      // console.log('Retrieved user data:', await userResult.body.json());
+      console.log('Retrieved user data:', userInfoObj);
+      res.locals.userInfo = userInfoObj;
     } catch (error) {
       console.error(error);
     }
   }
   // return response.sendFile(path.join(__dirname, '../index.html'));
-  return response.sendFile('login.html', { root: '.' });
+  //set the res.locals to the user info returned
+  return next();
+  return res.sendFile('login.html', { root: '.' });
   // return response.status(200).redirect('../index.html');
 };
 
