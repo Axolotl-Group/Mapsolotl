@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <title>Mapsolotl</title>
   <a id="login" style="display: none;" href="your-oauth2-URL-here">Identify Yourself</a>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 <!-- <script type="module" src="/oauth.js"> </script>
 </head> -->
 <script>	
@@ -44,7 +45,7 @@ window.onload = () => {
     })
     .catch(console.error);
   };</script>
-<body>
+<body id="pretty">
   <div id="info"></div>
   Login
   <!-- Needed to change this to /users from just /login / -->
