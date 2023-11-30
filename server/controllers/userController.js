@@ -33,6 +33,15 @@ userController.createUser = async (req, res, next) => {
     });
   }
 };
+function generateRandomString() {
+  let randomString = '';
+  const randomNumber = Math.floor(Math.random() * 10);
+
+  for (let i = 0; i < 20 + randomNumber; i++) {
+    randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+  }
+  return randomString;
+}
 
 //Discord-specific user record creation; no username and passwords are included here
 //will temporarily set User schema to not require them (YIKES)
@@ -42,6 +51,7 @@ userController.createDiscordUser = async (req, res, next) => {
   try {
     //adding userType field to the object passed into the .create method
     const response = await User.create({
+      userName: generateRandomString(),
       userType: 'discordUser',
       userNameDisc: username,
     });
@@ -175,6 +185,9 @@ userController.getToken = async ({ query }, res, next) => {
       console.log(
         `token type: ${oauthData.token_type}, token value: ${oauthData.access_token}`
       );
+      if (tokenResponseData.statusCode === 401) {
+        throw Error;
+      }
 
       const userResult = await request('https://discord.com/api/users/@me', {
         headers: {
