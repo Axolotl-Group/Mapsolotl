@@ -220,3 +220,79 @@ $seconary-color: #58c2e2;
   padding: 20px;
   justify-content: center;
 }
+
+// LOGIN PAGE STYLING!
+@mixin subtlePopUp {
+  transition: 4s;
+  &:hover {
+    transform: scale(1.7);
+    box-shadow: 1px 1px 3px #ebe4e4;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+$new-base-color: #68372ace;
+#loginPage,
+#signupPage {
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  background: $new-base-color;
+  border-radius: 0.3 rem;
+  color: $seconary-color;
+  input {
+    @include subtlePopUp;
+    border-radius: 5px;
+    opacity: 0.7;
+  }
+}
+
+#loginText {
+  animation: spin 1s;
+  font-size: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#signupText {
+  color: #e21717;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#discord {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  color: rgb(94, 171, 5);
+  align-self: flex-end;
+  position: relative;
+  bottom: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#idYou {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+// Signup Page;
+
+#suText {
+  font-size: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
