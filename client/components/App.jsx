@@ -66,7 +66,7 @@ const App = () => {
         </div>
       </div>
 
-      <div className="main-container">
+      <div className="main-container2">
         <ListContainer />
       </div>
     </div>

@@ -8,20 +8,26 @@ body {
   background-position: cover;
 }
 
+// .App {
+//   // display: flex;
+//   // justify-content: space-between;
+
+//   .search-container {
+//     // align-self: flex-start;
+//     max-height: 500px;
+//   }
+//   .main-container {
+//     // align-self: flex-end;
+//     // margin-left: 500px;
+//     // min-width: 800px;
+//     // border: none;
+//   }
+// }
+
 .App {
   display: flex;
-  justify-content: space-between;
-
-  .search-container {
-    // align-self: flex-start;
-    max-height: 500px;
-  }
-  .main-container {
-    align-self: flex-end;
-    // margin-left: 500px;
-    // min-width: 800px;
-    // border: none;
-  }
+  flex-direction: column;
+  // justify-content: space-between;
 }
 
 .header {
@@ -159,7 +165,7 @@ body {
 }
 
 .list-of-trails {
-  min-width: 700px;
+  min-width: 650px;
   img {
     width: 400px;
   }
@@ -169,6 +175,17 @@ body {
   }
 }
 
-.login-container {
-  background-color: red;
+//////////////////////////////////
+
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-content: center;
+  // background-color: #f7f7f7;
+}
+
+.heart {
+  font-size: large;
 }
