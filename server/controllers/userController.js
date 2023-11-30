@@ -132,7 +132,7 @@ userController.getToken = async ({ query }, response) => {
     }
   }
   // return response.sendFile(path.join(__dirname, '../index.html'));
-  return response.sendFile('login.html', { root: '.' });
+  return response.status(200).redirect('../index.html');
   // return response.status(200).redirect('../index.html');
 };
 
