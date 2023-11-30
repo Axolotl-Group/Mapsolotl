@@ -90,6 +90,7 @@ userController.getAllUser = async (req, res, next) => {
     });
   }
 };
+
 //Oauth
 userController.getToken = async ({ query }, response) => {
   const { code } = query;
