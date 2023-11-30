@@ -15,7 +15,12 @@ userController.createUser = async (req, res, next) => {
     const { userName, password } = req.body;
     const salt = await bcrypt.genSalt();
     const hashedPW = await bcrypt.hash(password, salt);
-    const response = await User.create({ userName, password: hashedPW });
+    //adding userType field to the object passed into the .create method
+    const response = await User.create({
+      userType: 'localUser',
+      userName,
+      password: hashedPW,
+    });
     const saveUser = await response.save();
     res.locals.userId = saveUser;
     console.log('newuser: ', saveUser);
@@ -29,13 +34,24 @@ userController.createUser = async (req, res, next) => {
   }
 };
 
+//Discord-specific user record creation; no username and passwords are included here
+//will temporarily set User schema to not require them (YIKES)
 userController.createDiscordUser = async (req, res, next) => {
   const { id, username, discriminator } = res.locals.userInfo;
   console.log(id, username, discriminator);
   try {
+    //adding userType field to the object passed into the .create method
+    const response = await User.create({
+      userType: 'discordUser',
+      userNameDisc: username,
+    });
+    const saveUser = await response.save();
+    res.locals.userId = saveUser;
+    console.log('new Discord User: ', saveUser);
+    return next();
   } catch (err) {
     return next({
-      log: `Express error handler caught in userController.createUser: ${err} `,
+      log: `Express error handler caught in userController.createDiscordUser: ${err} `,
       status: 400,
       message: { err: 'error occured while creating user' },
     });

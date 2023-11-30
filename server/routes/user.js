@@ -28,7 +28,7 @@ router.get(
   userController.getToken,
   userController.createDiscordUser,
   (req, res) => {
-    console.log(res.body);
+    //console.log(res.body);
     return res.status(200).redirect('/');
   }
 );
