@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="search-container">
-        <h1>Hike More, Worry Less</h1>
+        <h1>Bike More, Worry Less</h1>
         <div className="inputs">
           <input name="zip" type="text" id="zip" placeholder="ZIP CODE"></input>
           <input
