@@ -6,7 +6,9 @@ import { DISPLAY_SEARCH } from '../reducers/reducer.js';
 
 const App = () => {
   const dispatch = useDispatch();
+
   async function searchClick() {
+    //sends a GET request to a backend API endpoint /api/trails
     const response = await fetch(
       '/api/trails?' +
         new URLSearchParams({
@@ -21,55 +23,50 @@ const App = () => {
     );
 
     const result = await response.json();
-    console.log('result is' + result);
+    //console.log('result is' + result);
     dispatch(DISPLAY_SEARCH(result));
   }
 
   return (
-    <div className='App'>
-      <div className='search-container'>
+    <div className="App">
+      <div className="search-container">
         <h1>GET BUSY BIKING OR GET BUSY DOING SOMETHING ELSE</h1>
-        <div className='inputs'>
-          <label htmlFor='zip'>ZIP CODE: </label>
+        <div className="inputs">
+          <label htmlFor="zip">ZIP CODE: </label>
 
           <input
-            name='zip'
-            type='text'
-            id='zip'
-            placeholder='Ex: 48912'
+            name="zip"
+            type="text"
+            id="zip"
+            placeholder="Ex: 48912"
           ></input>
 
-          <label htmlFor='lat'>LATITUDE: </label>
+          <label htmlFor="lat">LATITUDE: </label>
+          <input name="lat" type="text" id="lat" placeholder="Optional"></input>
+
+          <label htmlFor="long">LONGITUDE: </label>
           <input
-            name='lat'
-            type='text'
-            id='lat'
-            placeholder='Optional'
+            name="lon"
+            type="text"
+            id="long"
+            placeholder="Optional"
           ></input>
-          <label htmlFor='long'>LONGITUDE: </label>
+
+          <label htmlFor="radius">MILE RADIUS: </label>
           <input
-            name='lon'
-            type='text'
-            id='long'
-            placeholder='Optional'
+            name="radius"
+            type="text"
+            id="radius"
+            placeholder="Default: 25 miles"
           ></input>
-          <label htmlFor='radius'>MILE RADIUS: </label>
-          <input
-            name='radius'
-            type='text'
-            id='radius'
-            placeholder='Default: 25 miles'
-          ></input>
-          <button
-            onClick={searchClick}
-            id='submit'
-          >
+
+          <button onClick={searchClick} id="submit" data-testid="submit-button">
             SUBMIT
           </button>
         </div>
       </div>
 
-      <div className='main-container'>
+      <div className="main-container">
         <ListContainer />
       </div>
     </div>
