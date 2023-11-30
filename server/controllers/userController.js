@@ -90,4 +90,50 @@ userController.getAllUser = async (req, res, next) => {
     });
   }
 };
+//Oauth
+userController.getToken = async ({ query }, response) => {
+  const { code } = query;
+  console.log('inside this.getToken, outside conditional');
+  if (code) {
+    console.log('inside condition in getToken');
+    try {
+      const tokenResponseData = await request(
+        'https://discord.com/api/oauth2/token',
+        {
+          method: 'POST',
+          body: new URLSearchParams({
+            client_id: clientId,
+            client_secret: clientSecret,
+            code,
+            grant_type: 'authorization_code',
+            redirect_uri: `http://localhost:${port}`,
+            scope: 'identify',
+          }).toString(),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
+
+      const oauthData = await tokenResponseData.body.json();
+
+      const userResult = await request('https://discord.com/api/users/@me', {
+        headers: {
+          authorization: `${oauthData.token_type} ${oauthData.access_token}`,
+        },
+      });
+      console.log(userResult);
+
+      console.log(await userResult.body.json());
+    } catch (error) {
+      // NOTE: An unauthorized token will not throw an error
+      // tokenResponseData.statusCode will be 401
+      console.error(error);
+    }
+  }
+  // return response.sendFile(path.join(__dirname, '../index.html'));
+  return response.sendFile('login.html', { root: '.' });
+  // return response.status(200).redirect('../index.html');
+};
+
 module.exports = userController;
