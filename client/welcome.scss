@@ -1,0 +1,12 @@
+.gif-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; //keep the background behind other content
+
+  background: url('https://media.giphy.com/media/42IAU2GyaTwXe/giphy.gif')
+    no-repeat center center;
+  background-size: cover;
+}
