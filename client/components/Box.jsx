@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MoreInfo from './MoreInfo.jsx';
 import { useDispatch } from 'react-redux';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
 const Box = ({ props }) => {
+  const [isLikeed, setIsLikeed] = useState(false);
   const dispatch = useDispatch();
-  //   console.log(props);
+
+  const handleHeartClick = () => {
+    setIsLikeed(!isLikeed);
+  };
+
   //sends a GET request to a backend API endpoint /api/info
   async function infoClick(id) {
     const response = await fetch(
@@ -24,7 +29,12 @@ const Box = ({ props }) => {
   return (
     <div className="list-of-trails">
       <h1>{props.name}</h1>
-      <FaRegHeart size={40} />
+      <div onClick={handleHeartClick}>
+        <FaHeart
+          size={30}
+          style={{ color: isLikeed ? '#b91c1c' : '#fefce8' }}
+        />
+      </div>
 
       <div className="location">
         <h3>
