@@ -1,36 +1,54 @@
-body {
-  // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
-  background-image: url('https://cdn.pixabay.com/photo/2021/05/06/09/55/yeti-6233039_1280.jpg');
-  // background-image: url('https://images.pexels.com/photos/2990678/pexels-photo-2990678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
-  background-size: 100%;
+// body {
+//   // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
+//   background-image: url('https://cdn.pixabay.com/photo/2021/05/06/09/55/yeti-6233039_1280.jpg');
+//   // background-image: url('https://images.pexels.com/photos/2990678/pexels-photo-2990678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+//   background-size: 100%;
 
-  // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
-  background-position: cover;
+//   // background-image: url('https://img.freepik.com/free-photo/mountain-landscape-lake-highlands-generative-ai_169016-28867.jpg?w=2000&t=st=1700872901~exp=1700873501~hmac=02c1b9e1bbb4c87d1004f6be033f815b59b93053cb43e14a82a82a63e9453b57');
+//   background-position: cover;
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+$base-color: #68372a;
+$seconary-color: #58c2e2;
+* {
+  font-family: 'Russo One', sans-serif;
 }
-
 .App {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
 
   .search-container {
-    // align-self: flex-start;
+    align-self: center;
     max-height: 500px;
+    padding: 22px;
+    margin-bottom: 80px;
+    h1 {
+      font-size: 4em;
+    }
   }
   .main-container {
-    align-self: flex-end;
+    // align-self: flex-end;
     // margin-left: 500px;
     // min-width: 800px;
     // border: none;
   }
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  margin-bottom: 40px;
+}
+
 .header {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   height: 140px;
   // margin: 10px;
   color: white;
-  background-color: rgba(173, 160, 160, 0.5);
+  // background-color: rgba(173, 160, 160, 0.5);
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
@@ -42,11 +60,13 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 120px;
-  background-color: rgba(69, 39, 169, 0.6);
+  background-color: #a95842;
   background-position: center;
   background-size: 160px;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  border-bottom-right-radius: 90px;
+  border-top-right-radius: 90px;
   margin-left: 10px;
   padding-right: 20px;
 
@@ -59,34 +79,37 @@ body {
   }
 
   h1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-      sans-serif;
     font-size: 40px;
-    color: rgb(2, 234, 199);
+    color: $seconary-color;
     font-weight: 600;
   }
   h1 span {
-    color: pink;
+    color: rgb(30, 163, 200);
     font-weight: 200;
   }
 }
 
 .nav-container {
-  color: white;
+  color: $base-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
   button {
-    color: blanchedalmond;
+    color: $seconary-color;
     background-color: rgba(173, 160, 160, 0);
     border-style: none;
     height: 40px;
-    font-size: larger;
-    margin-right: 10px;
+    font-size: 1.6em;
+    margin-right: 50px;
     border-radius: 8px;
+
+    a {
+      text-decoration: none;
+      color: $seconary-color;
+    }
   }
   button:hover {
-    background-color: rgba(69, 39, 169, 0.6);
+    background-color: $base-color;
 
     cursor: pointer;
     transform: scale(1.25);
@@ -95,18 +118,18 @@ body {
 
 .search-container,
 .list-of-trails {
-  border: 2px solid rgba(69, 39, 169, 0.6);
+  // border: 5px solid rgba(0, 0, 0, 0.9);
+  border: 10px dotted #764823;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  // font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   max-width: 500px;
-  background-color: rgba(173, 160, 160, 0.8);
   border-radius: 15px;
   margin-top: 10px;
   padding: 20px;
   h1 {
-    color: rgba(69, 39, 169);
+    color: $base-color;
     text-align: center;
   }
 
@@ -119,6 +142,7 @@ body {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    flex-wrap: wrap;
   }
 
   h3 {
@@ -135,14 +159,29 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   input {
     margin: 10px 0;
+    width: 55%;
+    background-color: transparent;
+    height: 25px;
+    padding: 12px;
+    border: 1px solid $base-color;
+    border-radius: 5px;
+    font-size: larger;
+  }
+  input:focus {
+    outline: none;
   }
 
+  input::placeholder {
+    color: #454444;
+    opacity: 1;
+  }
   button {
-    background-color: rgba(69, 39, 169, 0.6);
+    background-color: $base-color;
     color: blanchedalmond;
 
     border-style: none;
@@ -159,12 +198,25 @@ body {
 }
 
 .list-of-trails {
-  min-width: 700px;
+  border: 1px dotted #764823;
+  background-color: rgba(233, 220, 220, 0.4);
   img {
-    width: 400px;
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
   }
   ul,
   li {
     text-align: center;
   }
+}
+
+//////////////////////////////////
+
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-content: center;
 }
